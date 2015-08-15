@@ -181,9 +181,14 @@ class AdminIndex(RedirectView, LoginRequiredMixin):
             # Redirect to list of sites
             url = '/sites/'
         else:
-            # User belongs to one site only; redirect to that site
-            site_url = profile.site.url
-            url = '/site/{0}/'.format(site_url)
+            user_site = profile.site
+            # check if user belongs to a site
+            if user_site is None:
+                url = '/documentation/' #TODO: show a error page "You not belongs to a site"
+            else:
+                # User belongs to one site only; redirect to that site
+                site_url = profile.site.url
+                url = '/site/{0}/'.format(site_url)
         return url
 
 
