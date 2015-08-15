@@ -3,7 +3,7 @@
 
 import os
 
-from wsgi import install_dir, lib_dir
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 DEBUG = True
@@ -16,7 +16,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-SOURCE_DIR = os.path.abspath(os.path.join(install_dir, '..'))
+SOURCE_DIR = os.path.abspath(os.path.join(BASE_DIR, '..'))
 # TODO: This parameter must be removed when we rename the system and factor out
 # BibOS-related stuff.
 BIBOS_IMAGE_DIR = os.path.join(
@@ -27,7 +27,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', 
         # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(install_dir, '.database.db'),
+        'NAME': os.path.join(BASE_DIR, '.database.db'),
         # Or path to database file if using sqlite3.                      
         # The following settings are not used with sqlite3:
         'USER': '',
@@ -54,7 +54,7 @@ TIME_ZONE = 'Europe/Copenhagen'
 LANGUAGE_CODE = 'da-DK'
 
 LOCALE_PATHS = [
-    os.path.join(install_dir, 'locale')
+    os.path.join(BASE_DIR, 'locale')
 ]
 
 SITE_ID = 1
@@ -74,7 +74,7 @@ TIME_ZONE = 'Europe/Copenhagen'
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = os.path.join(install_dir, 'site_media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'site_media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -135,7 +135,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(install_dir, 'templates'),
+    os.path.join(BASE_DIR, 'templates'),
 )
 
 LOCAL_APPS = (
@@ -203,7 +203,7 @@ LOGGING = {
 
 AUTH_PROFILE_MODULE = 'account.UserProfile'
 
-ETC_DIR = os.path.join(install_dir, 'etc')
+ETC_DIR = os.path.join(BASE_DIR, 'etc')
 PROXY_HTPASSWD_FILE = os.path.join(ETC_DIR, 'bibos-proxy.htpasswd')
 
 # List of hosts that should be allowed through BibOS gateway proxies

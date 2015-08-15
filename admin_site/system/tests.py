@@ -10,7 +10,7 @@ import pep8
 
 from django.test import TestCase
 
-from bibos_admin.wsgi import install_dir as parent_directory
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 class SimpleTest(TestCase):
@@ -37,7 +37,7 @@ def pep8_test(filepath):
 class Pep8Test(TestCase):
     """Test that the template system a well as the default clients and plugins
     are PEP8-compliant."""
-    j = lambda dir: os.path.join(parent_directory, dir)
+    j = lambda dir: os.path.join(BASE_DIR, dir)
 
     test_system = pep8_test(j('system'))
     test_job = pep8_test(j('job'))
