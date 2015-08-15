@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
 from system.models import Site
 
@@ -44,3 +45,16 @@ class UserProfile(models.Model):
         #    raise ValidationError(_(
         #        'BibOS admins may not be attached to a site'
         #    ))
+
+User.get_profile = lambda self: UserProfile.objects.get(user=self)
+
+# Django does not automatically create profile objects for you. That is your responsibility. 
+# A common way to do that is to attach a post-save signal handler to the User model, 
+# and then create a profile whenever a new user is created.
+def create_profile(sender, instance=None, **kwargs):
+    if instance is None:
+        return
+    profile, created = UserProfile.objects.get_or_create(user=instance)
+
+
+post_save.connect(create_profile, sender=User)
