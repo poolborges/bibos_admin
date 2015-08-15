@@ -73,6 +73,7 @@ class ScriptForm(forms.ModelForm):
 
     class Meta:
         model = Script
+        fields = '__all__'
 
 
 class ConfigurationEntryForm(forms.ModelForm):
