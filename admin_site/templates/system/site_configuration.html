@@ -1,7 +1,9 @@
 {% extends "site_with_navigation.html" %}
 
+{% load i18n %}
+
 {% block specific_title %}
-Site-konfiguration
+{% trans 'Site Configuration' %}
 {% endblock %}
 
 {% block configuration_active %}
@@ -13,7 +15,7 @@ class="active"
 {% endblock %}
 
 {% block specific_documentation_links %}
-  <li><a href="{% url 'doc' 'site_configuration' %}"><i class="icon-question-sign icon-white"></i> Site-konfiguration</a></li>
+  <li><a href="{% url 'doc' 'site_configuration' %}"><i class="icon-question-sign icon-white"></i> {% trans 'Site Configuration' %}</a></li>
 {% endblock %}
 
 {% block specific_content %}
@@ -25,8 +27,8 @@ class="active"
       {% include 'notification.html' %}
 
       <div>
-        <button class="btn btn-primary">Gem ændringer</button>
-        <button class="btn" onclick="return ((location.href=location.href) && false)">Annuller</button>
+        <button class="btn btn-primary">{% trans 'Save changes' %}</button>
+        <button class="btn" onclick="return ((location.href=location.href) && false)">{% trans 'Cancel' %}</button>
         <div style="margin-top: 20px;">
           {% csrf_token %}
         </div>
@@ -34,7 +36,7 @@ class="active"
       
       {% if site %}
         <p class="well" style="font-size: 14px; line-height: 20px;">
-          <span class="muted">Dette sites ID er</span> <strong>{{ site.uid }}</strong>
+          <span class="muted">{% trans 'This site ID is' %}</span> <strong>{{ site.uid }}</strong>
         </p>
       {% endif %}
 

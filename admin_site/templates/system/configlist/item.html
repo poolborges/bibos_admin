@@ -1,3 +1,5 @@
+{% load i18n %}
+
 {# Remember that this templates must be able to be called both from templates.html and from list.html #}
 <tr class="muted">
   <td class="config-print-key">{{ key }}</td>
@@ -9,8 +11,10 @@
       <a class="dropdown-toggle btn config-print-value" data-toggle="dropdown"
           href="javascript:void(0)">{{ value }}</a>
       <ul class="dropdown-menu">
-        <li><a href="javascript:void(0)" onclick="BibOS.ConfigList.startEdit(this, '{{ submit_name }}')"><i class="icon-edit"></i> Redigér</a></li>
-        <li><a href="javascript:void(0)" onclick="BibOS.ConfigList.removeItem(this)"><i class="icon-remove"></i> Slet konfiguration</a></li>
+        <li><a href="javascript:void(0)" onclick="BibOS.ConfigList.startEdit(this, '{{ submit_name }}')" title="Edit configuration">
+          <i class="icon-edit"></i> {% trans 'Edit' %}</a></li>
+        <li><a href="javascript:void(0)" onclick="BibOS.ConfigList.removeItem(this)" title="Delete configuration">
+          <i class="icon-remove"></i> {% trans 'Delete' %}</a></li>
       </ul>
     </div>
   </td>

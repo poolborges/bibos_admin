@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load i18n %}
+
 {% block body %}
   
   <header {% block header_class %}{% endblock %} >
@@ -7,13 +9,13 @@
     {% if user.is_authenticated %}
   
       <div class="btn-group profile pull-right">
-        <span>Velkommen</span>
+        <span> {% trans "Welcome" %}</span>
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user }} <i class="icon-chevron-down icon-white"></i></a>
         <ul class="dropdown-menu pull-right">
           <!---TODO: Commented out until we sort out how to handle this.
           <li><a href="#"><i class="icon-user"></i> Min profil</a></li>
           -->
-          <li><a href="/accounts/logout/"><i class="icon-share"></i> Log ud</a></li>
+          <li><a href="/accounts/logout/"><i class="icon-share"></i> {% trans "Log out" %}</a></li>
         </ul>
       </div>
       

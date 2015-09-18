@@ -4,7 +4,7 @@
 {% if docheading %}
   BibOS documentation: {{ docheading }}
 {% else %}
-  BibOS dokumentation
+  BibOS documentation
 {% endif %}
 {% endblock %}
 
@@ -13,9 +13,9 @@ class="detailpage"
 {% endblock %}
 
 {% block content %}
-<h3>Dokumentation</h3>
+<h3>Documentation</h3>
 <ul class="nav nav-list utils utils-global">
-  <li><a href="{{ back_link|default:'/' }}"><i class="icon-arrow-left icon-white"></i> Tilbage til admin</a></li>
+  <li><a href="{{ back_link|default:'/' }}"><i class="icon-arrow-left icon-white"></i> Back to admin</a></li>
   {% for link, name in docmenuitems %}
   {% if link %}
   <li {% ifequal menu_active link %}class="active"{% endifequal %}>
@@ -36,9 +36,9 @@ class="detailpage"
     {% block specific_content %}
       <h1>BibOS</h1>
       <p>
-        BibOS giver dig mulighed for at fjernadministre computere via
-        BibOS-administrationsinterfacet. I menuen til venstre kan du finde
-        dokumentation for de forskellige dele af systemet.
+        BibOS allows you to remotely administer computers via
+         BibOS administration interface. In the left menu you can find
+         documentation on the different parts of the system.
       </p>
     {% endblock %}
   </div>

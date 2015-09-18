@@ -1,5 +1,7 @@
 {% extends "sitebase.html" %}
 
+{% load i18n %}
+
 {% block header_title %}
 <em>{{ site }}:</em> {% block specific_title %}{% endblock %}
 {% endblock %}
@@ -15,23 +17,23 @@ class="detailpage"
       <li><a href="/sites/"><i class="icon-arrow-left icon-white"></i> Sites</a></li>
       <li class="divider"></li>
     {% endifequal %}
-    <li {% block site_active %}{% endblock %}><a href="/site/{{ site.url }}"><i class="icon-eye-open icon-white"></i> Status</a></li>
+    <li {% block site_active %}{% endblock %}><a href="/site/{{ site.url }}"><i class="icon-eye-open icon-white"></i> {% trans 'Status' %}</a></li>
     <li class="divider"></li>
-    <li class="nav-header">Maskiner</li>
-    <li {% block configuration_active %}{% endblock %}><a href="/site/{{ site.url }}/configuration/"><i class="icon-cog icon-white"></i> Site-konfiguration</a></li>
-    <li {% block computers_active %}{% endblock %}><a href="/site/{{ site.url }}/computers/" onclick="spin();"><i class="icon-hdd icon-white"></i> Computere</a></li>
-    <li {% block groups_active %}{% endblock %}><a href="/site/{{ site.url }}/groups/"><i class="icon-tags icon-white"></i> Grupper</a></li>
+    <li class="nav-header">{% trans 'Equipment' %}</li>
+    <li {% block configuration_active %}{% endblock %}><a href="/site/{{ site.url }}/configuration/"><i class="icon-cog icon-white"></i> {% trans 'Site Configuration' %}</a></li>
+    <li {% block computers_active %}{% endblock %}><a href="/site/{{ site.url }}/computers/" onclick="spin();"><i class="icon-hdd icon-white"></i> {% trans 'Computers' %}</a></li>
+    <li {% block groups_active %}{% endblock %}><a href="/site/{{ site.url }}/groups/"><i class="icon-tags icon-white"></i> {% trans 'Groups' %}</a></li>
     <li class="divider"></li>
-    <li class="nav-header">Scripting</li>
-    <li {% block jobs_active %}{% endblock %}><a href="/site/{{ site.url }}/jobs/"><i class="icon-list-alt icon-white"></i> Jobs</a></li>
-    <li {% block scripts_active %}{% endblock %}><a href="/site/{{ site.url }}/scripts/"><i class="icon-list icon-white"></i> Scripts</a></li>
+    <li class="nav-header">{% trans 'Scripting' %}</li>
+    <li {% block jobs_active %}{% endblock %}><a href="/site/{{ site.url }}/jobs/"><i class="icon-list-alt icon-white"></i> {% trans 'Jobs' %}</a></li>
+    <li {% block scripts_active %}{% endblock %}><a href="/site/{{ site.url }}/scripts/"><i class="icon-list icon-white"></i> {% trans 'Scripts' %}</a></li>
     <li class="divider"></li>
-    <li {% block users_active %}{% endblock %}><a href="/site/{{site.url}}/users/"><i class="icon-user icon-white"></i> Brugere</a></li>
+    <li {% block users_active %}{% endblock %}><a href="/site/{{site.url}}/users/"><i class="icon-user icon-white"></i> {% trans 'Users' %}</a></li>
     <li class="divider"></li>
-    <li class="nav-header">Dokumentation</li>
+    <li class="nav-header"> {% trans 'Documentation' %}</li>
     {% block specific_documentation_links %}
     {% endblock %}
-    <li><a href="{% url 'doc_root' %}">Læs dokumentation ...</a></li>
+    <li><a href="{% url 'doc_root' %}"> {% trans 'Read the documentation' %} ...</a></li>
   </ul>
 
   {% block specific_content %}
@@ -39,7 +41,7 @@ class="detailpage"
 
   <div id="jobinfo-popover" class="popover fade bottom in">
     <div class="arrow"></div>
-    <h3 id="jobinfo-title" class="popover-title">Job info</h3>
+    <h3 id="jobinfo-title" class="popover-title"> {% trans 'Job info' %}</h3>
     <div id="jobinfo-content" class="popover-content"></div>
   </div>
 

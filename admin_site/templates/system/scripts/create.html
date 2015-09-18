@@ -1,7 +1,9 @@
 {% extends "site_with_navigation.html" %}
 
+{% load i18n %}
+
 {% block specific_title %}
-Scripts
+{% trans 'Scripts' %}
 {% endblock %}
 
 {% block scripts_active %}
@@ -19,14 +21,14 @@ $.each(inputs, function() {BibOS.ScriptEdit.addInput('#create-script-inputs', th
 {% endblock %}
 
 {% block specific_documentation_links %}
-  <li><a href="{% url 'doc' 'scripts' %}"><i class="icon-question-sign icon-white"></i> Administration af scripts</a></li>
-  <li><a href="{% url 'doc' 'scripts/running' %}"><i class="icon-question-sign icon-white"></i> Afvikling af scripts</a></li>
+  <li><a href="{% url 'doc' 'scripts' %}"><i class="icon-question-sign icon-white"></i> {% trans 'Managing scripts' %}</a></li>
+  <li><a href="{% url 'doc' 'scripts/running' %}"><i class="icon-question-sign icon-white"></i> {% trans 'Running scripts' %}</a></li>
 {% endblock %}
 
 
 {% block specific_content %}
   <div class="sublevelnav">
-    <div class="listutils"><a href="{% url 'new_script' site.uid %}" title="Tilføj nyt script"><i class="icon-plus icon-white"></i> tilføj nyt script</a></div>
+    <div class="listutils"><a href="{% url 'new_script' site.uid %}" title="Tilføj nyt script"><i class="icon-plus icon-white"></i>{% trans 'Add new script' %}</a></div>
     {% include 'system/scripts/navigation.html' %}
   </div>
 
@@ -34,7 +36,7 @@ $.each(inputs, function() {BibOS.ScriptEdit.addInput('#create-script-inputs', th
 
   <div class="container-fluid main sublevelmain">
     <h2 class="divideheader">
-      Opret script
+      Create script
     </h2>
 
     <form method="post" name="scriptform" id="scriptform"
@@ -45,8 +47,8 @@ $.each(inputs, function() {BibOS.ScriptEdit.addInput('#create-script-inputs', th
       <div>
       {% include 'notification.html' %}
       </div>
-      <input type="submit" class="btn btn-primary" value="Opret script" />
-      <button class="btn" onclick="location.href='{% url 'scripts' site.uid %}'; return false">Annuller</button>
+      <input type="submit" class="btn btn-primary" value="{% trans 'Create script' %}" />
+      <button class="btn" onclick="location.href='{% url 'scripts' site.uid %}'; return false">{% trans 'Cancel' %}</button>
 
       <hr>
       {% include 'system/scripts/form.html' %}

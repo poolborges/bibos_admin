@@ -1,11 +1,13 @@
 {% extends "site_with_navigation.html" %}
 
+{% load i18n %}
+
 {% block specific_title %}
-Grupper
+{% trans 'Groups' %}
 {% endblock %}
 
 {% block specific_documentation_links %}
-    <li><a href="{% url 'doc' 'groups' %}"><i class="icon-question-sign icon-white"></i> Administration af grupper</a></li>
+    <li><a href="{% url 'doc' 'groups' %}"><i class="icon-question-sign icon-white"></i> {% trans 'Managing groups' %}</a></li>
 {% endblock %}
 
 {% block javascripts %}
@@ -21,13 +23,13 @@ class="active"
 {% block specific_content %}
   <ul class="sublevelnav">
       <li class="listutils">
-        <a href="#addNewGroup" role="button" data-toggle="modal" title="tilføj ny gruppe"><i class="icon-plus icon-white"></i> tilføj ny gruppe</a>
+        <a href="#addNewGroup" role="button" data-toggle="modal" title="{% trans 'Add new group' %}"><i class="icon-plus icon-white"></i> {% trans 'Add new group' %}</a>
       </li>
       {% for group in site.groups.all %}
         <li {% ifequal group selected_group %}class="active"{% endifequal %}>
           {% ifequal group selected_group %}
             {% if selected_group.is_delete_allowed %}
-              <a class="remove pull-right" href="/site/{{ site.url }}/groups/{{ selected_group.url }}/delete/" title="Slet gruppe"><i class="icon-remove icon-white"></i></a>
+              <a class="remove pull-right" href="/site/{{ site.url }}/groups/{{ selected_group.url }}/delete/" title="{% trans 'Delete group' %}"><i class="icon-remove icon-white"></i></a>
             {% endif %}
           {% endifequal %}
           <a class="list-item" href="/site/{{ site.url }}/groups/{{ group.url }}/"><i class="icon-tags"></i> {{ group.name }}</a>
@@ -37,25 +39,25 @@ class="active"
   
   <div class="container-fluid main sublevelmain">
     
-    <h2 class="divideheader">Detaljer om <em>{{ selected_group.name }}</em></h2>
+    <h2 class="divideheader">{% trans 'Details about' %} <em>{{ selected_group.name }}</em></h2>
     {% include 'notification.html' %}
     
     <form name="updategroupform" id="updategroupform"
       action="{% url 'group' site.uid selected_group.url %}"
       method="post" class="row-fluid">
     
-      <button class="btn btn-primary">Gem ændringer</button>
-      <button class="btn" onclick="return BibOS.PackageList.cancelEditing()">Annuller</button>
+      <button class="btn btn-primary">{% trans 'Save changes' %}</button>
+      <button class="btn" onclick="return BibOS.PackageList.cancelEditing()">{% trans 'Cancel' %}</button>
       
       <ul class="nav nav-tabs">
         <li class="active">
-          <a href="#group-details" data-toggle="tab">Detaljer</a>
+          <a href="#group-details" data-toggle="tab">{% trans 'Details' %}</a>
         </li>
         <li>
-          <a href="#group-configs" data-toggle="tab">Konfigurationer</a>
+          <a href="#group-configs" data-toggle="tab">{% trans 'Configurations' %}</a>
         </li>
         <li>
-          <a href="#group-packages" data-toggle="tab">Pakker</a>
+          <a href="#group-packages" data-toggle="tab">{% trans 'Packages' %}</a>
         </li>
       </ul>
       
@@ -63,20 +65,20 @@ class="active"
         <div class="row-fluid">
           <fieldset class="span6">
             {% csrf_token %}
-            <label for="id_name">Navn:</label>
-            {{ form.name.errors }}
-            {{ form.name }}
-
-            <label for="id_uid">Id:</label>
+            <label for="id_uid">{% trans 'Id' %}:</label>
             {{ form.uid.errors }}
             {{ form.uid }}
 
-            <label for="id_description">Beskrivelse:</label>
+            <label for="id_name">{% trans 'Name' %}:</label>
+            {{ form.name.errors }}
+            {{ form.name }}
+
+            <label for="id_description">{% trans 'Description' %}:</label>
             {{ form.description.errors }}
             {{ form.description }}
           </fieldset>
           <fieldset class="span6">
-            <label for="id_pcs">Computere i denne gruppe:</label>
+            <label for="id_pcs">{% trans 'Computers in this group' %}:</label>
             {{ form.pcs.errors }}
             {% include 'system/pclist/list.html' with submit_name='pcs' %}
           </fieldset>
@@ -98,15 +100,15 @@ class="active"
       <form action="{% url 'new_group' site.uid %}" name="new_group_form" id="new_group_form" method="post">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">×</button>
-          <h3>Tilføj ny gruppe</h3>
+          <h3>{% trans 'Add new group' %}</h3>
         </div>
         <div class="modal-body">
             {% csrf_token %}
             {{ newform.as_p }}
         </div>
         <div class="modal-footer">
-          <input type="submit" class="btn btn-primary" value="Gem" />
-          <input type="reset" class="btn" data-dismiss="modal" value="Annuller" />
+          <input type="submit" class="btn btn-primary" value="{% trans 'Save' %}" />
+          <input type="reset" class="btn" data-dismiss="modal" value="{% trans 'Cancel' %}" />
         </div>
       </form>
     </div>

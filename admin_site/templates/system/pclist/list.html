@@ -1,7 +1,7 @@
 {% if submit_name %}
 <ul class="unstyled well actionlist" id="id_{{ submit_name }}">
   <li class="addpctrigger">
-    <a href="javascript:void(0)" title="Tilføj ny computer"><i class="icon-plus"></i> tilføj ny computer</a>
+    <a href="javascript:void(0)" title="Add new computer"><i class="icon-plus"></i> Add new computer</a>
     <ul class="addpclist addlist">
       {% for pc in available_pcs %}
         {% include 'system/pclist/item.html' with pk=pc.pk name=pc.name %}

@@ -1,11 +1,13 @@
 {% extends "site_with_navigation.html" %}
 
+{% load i18n %}
+
 {% block specific_title %}
-Computere
+{% trans 'Computers' %}
 {% endblock %}
 
 {% block specific_documentation_links %}
-  <li><a href="{% url 'doc' 'computers' %}"><i class="icon-question-sign icon-white"></i> Administration af computere</a></li>
+  <li><a href="{% url 'doc' 'computers' %}"><i class="icon-question-sign icon-white"></i> {% trans 'Managing computers' %}</a></li>
 {% endblock %}
 
 {% block javascripts %}
@@ -61,68 +63,68 @@ class="active"
     
     <h2 class="divideheader">Detaljer om <em>{{ selected_pc.name }}</em> 
       {% if selected_pc.is_update_required %}
-        <span class="label label-warning">Opdateringer tilgængelige</span>
+        <span class="label label-warning">{% trans 'Updates available' %}</span>
       {% endif %}
     </h2>
     {% include 'notification.html' %}
     
     {% if selected_pc.last_seen %} 
-      <p class="pull-right"><span class="muted"> &nbsp;Sidst set:</span> <strong>{{ selected_pc.last_seen|date }} </strong> {{ selected_pc.last_seen|time }}</p>
+      <p class="pull-right"><span class="muted"> &nbsp;{% trans 'Last seen' %}:</span> <strong>{{ selected_pc.last_seen|date }} </strong> {{ selected_pc.last_seen|time }}</p>
     {% endif %}
     
     <form name="pc_update_form" id="pc_update_form" action="{% url 'computer' site.uid selected_pc.uid %}" method="post">
       {% csrf_token %}
 
-      <button class="btn btn-primary">Gem ændringer</button>
+      <button class="btn btn-primary">{% trans 'Save Changes' %}</button>
       <button class="btn" onclick="return ((location.href = '{% url 'computer' site.uid selected_pc.uid %}') && false)">Annuller</button>
       
       <ul class="nav nav-tabs">
         <li class="active">
-          <a href="#pc-details" data-toggle="tab">Detaljer</a>
+          <a href="#pc-details" data-toggle="tab">{% trans 'Details' %}</a>
         </li>
         <li>
-          <a href="#pc-configs" data-toggle="tab">Konfigurationer</a>
+          <a href="#pc-configs" data-toggle="tab">{% trans 'Configurations' %}</a>
         </li>
         <li>
-          <a href="#pc-packages" data-toggle="tab">Pakker</a>
+          <a href="#pc-packages" data-toggle="tab">{% trans 'Packages' %}</a>
         </li>
         <li>
-          <a href="#pc-jobs" data-toggle="tab">Jobhistorik</a>
+          <a href="#pc-jobs" data-toggle="tab">{% trans 'Jobs historic' %}</a>
         </li>
       </ul>
 
       <div id="pc-details" class="tabcontent active">
         <div class="row-fluid">
           <fieldset class="span6">
-            <label for="id_name">Navn:</label>
+            <label for="id_name">{% trans 'Name' %}:</label>
             {{ form.name.errors }}
             {{ form.name }}
             
-            <label for="id_description">Beskrivelse:</label>
+            <label for="id_description">{% trans 'Description' %}:</label>
             {{ form.description.errors }}
             {{ form.description }}
             
-            <label for="id_distribution">Distribution:</label>
+            <label for="id_distribution">{% trans 'Distribution' %}:</label>
             {{ form.distribution.errors }}
             {{ form.distribution }}
 
             <label class="checkbox" for="id_is_active">
               {{ form.is_active.errors }}
-              {{ form.is_active }} Aktiv
+              {{ form.is_active }} {% trans 'Active' %}
             </label>
             
           </fieldset>
           <fieldset class="span6">
             {% if waiting_for_package_list %}
               <p>
-                Det er ikke muligt at redigere grupper for denne
-                computer, da den ikke har uploadet sin pakkeliste endnu.
-                </p><p> 
-                Klik på fanebladet "Pakker" for yderligere information.
+              {% trans 'It is not possible to edit groups for this computer, since it has uploaded its package list' %}
+              </p>
+              <p> 
+                {% trans 'Click on the tab "Packages" for more information.' %}
               </p>
             {% else %}
             {{ form.pc_groups.errors }}
-            <label>Grupper:</label>
+            <label>Groups:</label>
             {% include 'system/pcgrouplist/list.html' with submit_name='pc_groups' %}
             {% endif %}
           </fieldset>
@@ -138,23 +140,21 @@ class="active"
       <div id="pc-packages" class="tabcontent">
         {% if waiting_for_package_list %}
           <p id="package_wait_explanation">
-            Det vil først være muligt at tilpasse pakker på denne computer
-            når BibOS administrations-systemet har modtaget en liste over
-            installerede pakker fra computeren. Dette kræver at computeren
-            er tændt, at den er blevet
-            <a href="{%url 'doc' 'computers/activating' %}">aktiveret</a>
-            og at den har adgang til BibOS-admin, enten via direkte
-            internetforbindelse eller gennem en BibOS gateway.
+            It will only be possible to customize packages on this computer 
+            when BibOS administration system has received a list of installed packages from the computer. 
+            This requires that the computer is turned on, it has been 
+            <a href="{%url 'doc' 'computers/activating' %}">activated</a>
+            and that it has access to BibOS Manager, either via direct internet connection or through a BibOS gateway.
           </p>
           <p>
-            Der kan gå op til fem minutter fra ovenstående betingelser er
-            opfyldt indtil admin-systemet modtager pakke-listen.
+            It can take up to five minutes from the foregoing conditions
+             met until admin system receives package list.
           </p>
         {% else %}
-          <div><strong>Tilpasning af pakker kun på denne maskine</strong></div>
+          <div><strong>Customizing packets only on this machine</strong></div>
           {% include 'system/package_lists/list.html' with packages=package_infos pl_id='pc_packages'%}
           {% if pending_packages_add %}
-          <div><strong>Pakker der venter på at blive installeret på maskinen</strong></div>
+          <div><strong>Packages waiting to be installed on the machine</strong></div>
           <ul class="unstyled well actionlist packagelist">
             {% for name in pending_packages_add %}
               <li><span class="label">{{ name }}</span></li>
@@ -162,7 +162,7 @@ class="active"
           </ul>
           {% endif %}
           {% if pending_packages_remove %}
-          <div><strong>Pakker der venter på at blive fjernet fra maskinen</strong></div>
+          <div><strong>Packages that are waiting to be removed from the machine</strong></div>
           <ul class="unstyled well actionlist packagelist">
             {% for name in pending_packages_remove %}
               <li><span class="label">{{ name }}</span></li>
@@ -170,10 +170,10 @@ class="active"
           </ul>
           {% endif %}
           {% if selected_pc.package_list.needs_upgrade_packages %}
-          <div><strong>Pakker der kan opgraderes på maskinen</strong></div>
+          <div><strong>Packages can be upgraded to the machine</strong></div>
           <ul id="needs_upgrade_packages">
                <input type="checkbox" onClick="toggle_package_selection(this)" />
-               <strong>Markér alle</strong></br>
+               <strong>Mark all</strong></br>
               
             {% for package in selected_pc.package_list.needs_upgrade_packages %}
               <li>
@@ -188,7 +188,7 @@ class="active"
                  onclick="BibOS.PackageList.markUpgradePackages('#needs_upgrade_packages', '#upgrade_packages_form')" />
           {% endif %}
           {% if selected_pc.package_list.pending_upgrade_packages %}
-          <div><strong>Pakker der venter på at blive opgraderet</strong></div>
+          <div><strong>Packages that are waiting to be upgraded</strong></div>
           <ul>
             {% for package in selected_pc.package_list.pending_upgrade_packages %}
               <li>{{ package.name }}</li>
@@ -202,8 +202,8 @@ class="active"
         <table id="computer_jobs_table" class="table jobtable">
           <tr>
             {% include 'widgets/orderby_th.html' with key='batch__script__name' label='Script' anchor='#pc-jobs' %}
-            {% include 'widgets/orderby_th.html' with key='started' label='Startet' anchor='#pc-jobs' %}
-            {% include 'widgets/orderby_th.html' with key='finished' label='Sluttet' anchor='#pc-jobs' %}
+            {% include 'widgets/orderby_th.html' with key='started' label='Started' anchor='#pc-jobs' %}
+            {% include 'widgets/orderby_th.html' with key='finished' label='Finished' anchor='#pc-jobs' %}
             {% include 'widgets/orderby_th.html' with key='status' label='Status' anchor='#pc-jobs' %}
             {% include 'widgets/orderby_th.html' with key='batch__name' label='Batch' anchor='#pc-jobs' %}
             <th></th>

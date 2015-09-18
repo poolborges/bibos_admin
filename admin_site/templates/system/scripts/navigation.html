@@ -1,10 +1,12 @@
+{% load i18n %}
+
   <ul class="nav nav-tabs scripttabs">
     {% if global_selected %}
-    <li><a href="#localscripts" data-toggle="tab">Lokale scripts</a></li>
-    <li class="active"><a href="#globalscripts" data-toggle="tab">Globale scripts</a></li>
+    <li><a href="#localscripts" data-toggle="tab">{% trans 'Local scripts' %}</a></li>
+    <li class="active"><a href="#globalscripts" data-toggle="tab">{% trans 'Global scripts' %}</a></li>
     {% else %}
-    <li class="active"><a href="#localscripts" data-toggle="tab">Lokale scripts</a></li>
-    <li><a href="#globalscripts" data-toggle="tab">Globale scripts</a></li>
+    <li class="active"><a href="#localscripts" data-toggle="tab">{% trans 'Local scripts' %}</a></li>
+    <li><a href="#globalscripts" data-toggle="tab">{% trans 'Global scripts' %}</a></li>
     {% endif %}
   </ul>
   <div class="tab-content">

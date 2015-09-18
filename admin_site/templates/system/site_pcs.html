@@ -1,7 +1,9 @@
 {% extends "site_with_navigation.html" %}
 
+{% load i18n %}
+
 {% block specific_title %}
-Computere
+{% trans 'Computers' %}
 {% endblock %}
 
 {% block computers_active %}
@@ -10,11 +12,11 @@ class="active"
 
 {% block specific_content %}
   <ul class="sublevelnav">
-      <li>Der er ingen computere</li>
+      <li>{% trans 'There are no computers' %}</li>
   </ul>
   
   <div class="container-fluid main sublevelmain">
-    <h2 class="divideheader">Computere</h2>
-    <p>Der blev ikke fundet nogen computere</p>
+    <h2 class="divideheader">{% trans 'Computers' %}</h2>
+    <p>{% trans 'It found no computers' %}</p>
   </div>
 {% endblock %}

@@ -23,9 +23,9 @@ class="active"
 {% endblock %}
 
 {% block specific_documentation_links %}
-  <li><a href="{% url 'doc' 'jobs' %}"><i class="icon-question-sign icon-white"></i> Hjælp til joblisten</a></li>
-  <li><a href="{% url 'doc' 'scripts' %}"><i class="icon-question-sign icon-white"></i> Administration af scripts</a></li>
-  <li><a href="{% url 'doc' 'scripts/running' %}"><i class="icon-question-sign icon-white"></i> Afvikling af scripts</a></li>
+  <li><a href="{% url 'doc' 'jobs' %}"><i class="icon-question-sign icon-white"></i> Help for the job list</a></li>
+  <li><a href="{% url 'doc' 'scripts' %}"><i class="icon-question-sign icon-white"></i> Managing scripts</a></li>
+  <li><a href="{% url 'doc' 'scripts/running' %}"><i class="icon-question-sign icon-white"></i> Running scripts</a></li>
 {% endblock %}
 
 {% block specific_content %}
@@ -50,8 +50,8 @@ class="active"
       <input type="hidden" name="pc" value="{{ selected_pc }}" />
       <input type="hidden" name="group" value="{{ selected_group }}" />
       <input type="hidden" name="orderby" value="-pk" />
-      <input class="btn btn-primary pull-right" type="button" onclick="BibOS.JobList.reset()" value="Nulstil filtre" />
-      <h3 class="nav-header">Filtrér:</h3>
+      <input class="btn btn-primary pull-right" type="button" onclick="BibOS.JobList.reset()" value="Reset filters" />
+      <h3 class="nav-header">Filter:</h3>
       <hr>
       <div id="jobsearch-status-selectors">
       {% for s in status_choices%}
@@ -65,19 +65,19 @@ class="active"
       <hr>
       <label>
         <input type="radio" value="20"  checked="checked" name="do_limit">
-        <span class="label">Første 20</span>
+        <span class="label">first 20</span>
       </label>
       <label>
         <input type="radio" value="50"  name="do_limit">
-        <span class="label">Første 50</span>
+        <span class="label">first 50</span>
       </label>
       <label>
         <input type="radio" value="100"  name="do_limit">
-        <span class="label">Første 100</span>
+        <span class="label">first 100</span>
       </label>
       <label>
         <input type="radio" value="0"  name="do_limit">
-        <span class="label">Alle</span>
+        <span class="label">All</span>
       </label>
   </div>
       <hr>
@@ -91,7 +91,7 @@ class="active"
           {% endfor %}
         </ul>
       </div>
-      <a href="javascript:void(0)" class="btn collapsing" data-toggle="collapse" data-target="#demo2"><i class="icon-chevron-down"></i> Computere</a>
+      <a href="javascript:void(0)" class="btn collapsing" data-toggle="collapse" data-target="#demo2"><i class="icon-chevron-down"></i> Computers</a>
       <div id="demo2" class="collapse out{% if selected_pc %} in{% endif %}">
         <ul class="unstyled">
           {% for pc in pcs %}
@@ -101,7 +101,7 @@ class="active"
           {% endfor %}
         </ul>
       </div>
-      <a href="javascript:void(0)" class="btn collapsing" data-toggle="collapse" data-target="#demo3"><i class="icon-chevron-down"></i> Grupper</a>
+      <a href="javascript:void(0)" class="btn collapsing" data-toggle="collapse" data-target="#demo3"><i class="icon-chevron-down"></i> Groups</a>
       <div id="demo3" class="collapse out{% if selected_group %} in{% endif %}">
         <ul class="unstyled">
           {% for group in groups %}
@@ -119,8 +119,8 @@ class="active"
       <thead>
         <tr>
           <th class="orderby order-batch__script__name desc" onclick="BibOS.JobList.orderby('batch__script__name')">Script<br><i class="icon icon-chevron-down"></i></th>
-          <th class="orderby order-started desc" onclick="BibOS.JobList.orderby('started')">Startet<br><i class="icon icon-chevron-down"></i></th>
-          <th class="orderby order-finished desc" onclick="BibOS.JobList.orderby('finished')">Sluttet<br><i class="icon icon-chevron-down"></i></th>
+          <th class="orderby order-started desc" onclick="BibOS.JobList.orderby('started')">Started<br><i class="icon icon-chevron-down"></i></th>
+          <th class="orderby order-finished desc" onclick="BibOS.JobList.orderby('finished')">Finished<br><i class="icon icon-chevron-down"></i></th>
           <th class="orderby order-status desc" onclick="BibOS.JobList.orderby('status')">Status<br><i class="icon icon-chevron-down"></i></th>
           <th class="orderby order-pc__name desc" onclick="BibOS.JobList.orderby('pc__name')">Computer<br><i class="icon icon-chevron-down"></i></th>
           <th class="orderby order-batch__name desc" onclick="BibOS.JobList.orderby('batch__name')">Batch<br><i class="icon icon-chevron-down"></i></th>

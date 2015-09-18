@@ -1259,30 +1259,30 @@ class PackageSearch(JSONResponseMixin, ListView):
 documentation_menu_items = [
     ('', 'BibOS Administration'),
     ('status', 'Status'),
-    ('site_configuration', 'Site-konfiguration'),
-    ('computers', 'Computere'),
-    ('groups', 'Grupper'),
+    ('site_configuration', 'Site configuration'),
+    ('computers', 'Computers'),
+    ('groups', 'Groups'),
     ('jobs', 'Jobs'),
     ('scripts', 'Scripts'),
-    ('users', 'Brugere'),
+    ('users', 'Users'),
 
-    ('', 'Installation af BibOS'),
+    ('', 'Installing BibOS'),
     ('install_dvd', 'Installation via DVD'),
     ('install_usb', 'Installation via USB'),
     ('install_network', 'Installation via netværk'),
     ('postinstall', 'Postinstall-script'),
-    ('pdf_guide', 'Brugervenlig installationsguide (PDF)'),
+    ('pdf_guide', 'User-friendly installation guide (PDF)'),
 
     ('', 'BibOS-gateway'),
-    ('gateway_install', 'Installation af BibOS-gateway'),
-    ('gateway_admin', 'Administration af gateway'),
-    ('gateway_use', 'Anvendelse af gateway på BibOS-maskiner'),
+    ('gateway_install', 'Installing BibOS gateway'),
+    ('gateway_admin', 'Managing gateway'),
+    ('gateway_use', 'Using the gateway to BibOS machines'),
     ('', 'Om'),
     ('om_bibos_admin', 'Om BibOS-Admin'),
 
-    ('', 'Teknisk dokumentation'),
-    ('tech/bibos', 'BibOS teknisk dokumentation'),
-    ('tech/admin', 'BibOS Admin teknisk dokumentation'),
+    ('', 'Technical documentation'),
+    ('tech/bibos', 'BibOS technical documentation'),
+    ('tech/admin', 'BibOS-Admin technical documentation'),
 
 ]
 

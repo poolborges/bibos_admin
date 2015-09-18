@@ -1,13 +1,13 @@
 {% if disable_inputs != "yes" %}
   <ul class="nav nav-tabs">
     <li class="active">
-      <a href="#script-details" data-toggle="tab">Detaljer</a>
+      <a href="#script-details" data-toggle="tab">Details</a>
     </li>
     <li>
-      <a href="#script-preview" data-toggle="tab">Kode</a>
+      <a href="#script-preview" data-toggle="tab">Code</a>
     </li>
     <li>
-      <a href="#script-parameters" data-toggle="tab">Inputparametre</a>
+      <a href="#script-parameters" data-toggle="tab">Input Parameter</a>
     </li>
   </ul>
   <div id="script-details" class="tabcontent active">
@@ -17,7 +17,7 @@
       <div class="row-fluid">
         <div class="span6">
           {{ form.name.errors }}
-          <label for="{{ form.name.id_for_label }}">Navn:</label>
+          <label for="{{ form.name.id_for_label }}">Name:</label>
           {{ form.name }}        
           {{ form.description.errors }}
         </div>
@@ -30,11 +30,11 @@
               value="{{ site.id }}"
               {% if not global_script %}checked="checked"{% endif %}
             >
-            Lokalt script for {{ site.uid }}
+            Local script for {{ site.uid }}
           </label>
         </div>
         <div class="span12" style="margin-left: 0;">
-          <label for="{{ form.description.id_for_label }}">Beskrivelse:</label>
+          <label for="{{ form.description.id_for_label }}">Description:</label>
           <div class="scriptDescription">
             {{ form.description }}
           </div>
@@ -49,10 +49,10 @@
   
     <fieldset>
       {{ form.executable_code.errors }}
-      <label for="{{ form.executable_code.id_for_label }}">Upload scriptkode:</label>
+      <label for="{{ form.executable_code.id_for_label }}">Upload script code:</label>
       {{ form.executable_code }}
       {% if show_code_preview %}
-      <label style="padding-top: 10px;">Kode:</label>
+      <label style="padding-top: 10px;">Code:</label>
       <pre>{{script_preview |escape}}</pre>
       {% endif %}
     </fieldset>
@@ -66,20 +66,20 @@
       <input type="hidden" name="script-number-of-inputs" class="script-number-of-inputs" value="0" />
     {% else %}
       <fieldset id="{{ form.prefix|default:'update' }}-script-inputs">
-        <label>Input-parametre:</label>
+        <label>Input parameters:</label>
         <input type="hidden" name="script-number-of-inputs" class="script-number-of-inputs" value="0" />
         <div class="well">
           <table class="table table-condensed">
             <thead>
               <tr>
-                <th>Navn</th>
+                <th>Name</th>
                 <th>Type</th>
               </tr>
             </thead>
             <tbody id="script-input-container">
               <tr class="script-input-add">
                 <td colspan="3">
-                  <a href="javascript:void(0)" onclick="BibOS.ScriptEdit.addInput('#{{ form.prefix|default:'update' }}-script-inputs', {})" title="Tilføj ny konfiguration"><i class="icon-plus"></i> tilføj parameter</a>
+                  <a href="javascript:void(0)" onclick="BibOS.ScriptEdit.addInput('#{{ form.prefix|default:'update' }}-script-inputs', {})" title="Add new parameter"><i class="icon-plus"></i> Add parameter</a>
                 </td>
               </tr>
             </tbody>

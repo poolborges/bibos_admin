@@ -1,13 +1,17 @@
 
 {% extends "sitebase.html" %}
 
+{% load i18n %}
+
+{% trans "Save" as btn_save %}
+
 {% block content %}
 
 <div class="container">
   <form action="" method="post">{% csrf_token %}
       {{ form.as_p }}
-      <input class="btn btn-primary" type="submit" value="Gem" />
-      <a class="btn" href="javascript:history.go(-1)">Annuller</a>
+      <input class="btn btn-primary" type="submit" value="{% trans 'Save' %}" />
+      <a class="btn" href="javascript:history.go(-1)">{% trans "Cancel" %}</a>
   </form>
 </div>
 {% endblock %}
