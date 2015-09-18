@@ -13,8 +13,19 @@ from job.models import Job, Script
 
 
 def register_new_computer(name, uid, distribution, site, configuration):
-    """Register a new computer with the admin system - after registration, the
-    computer will be submitted for approval."""
+    """Register a new computer with the admin system 
+        - after registration, the computer will be submitted for approval.
+
+    Args:
+        name(str): Computer name
+        uid(str): Computer UID
+        distribution(string): The distribution name
+        site(str): The site name
+        configuration(str):
+
+    Returns:
+        int: 0
+    """
 
     try:
         new_pc = PC.objects.get(uid=uid)
