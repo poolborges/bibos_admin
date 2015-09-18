@@ -94,7 +94,8 @@ urlpatterns = patterns(
 
     # Documentation
     url(r'^documentation/pdf_guide/',
-        RedirectView.as_view(url='/media/docs/bibOS_installationsguide.pdf')),
+        RedirectView.as_view(url='/media/docs/bibOS_installationsguide.pdf', 
+            permanent=True)),
     url(r'^documentation/tech/(?P<name>[\d\w\/]+)/', TechDocView.as_view(),
         name='tech_doc'),
     url(r'^documentation/(?P<name>[\d\w\/]+)/', DocView.as_view(), name='doc'),
